@@ -1,4 +1,6 @@
 using MagicVilla_VillaAPI.Data;
+using MagicVilla_VillaAPI.Repository;
+using MagicVilla_VillaAPI.Repository.IRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -50,7 +52,9 @@ namespace MagicVilla_VillaAPI
             {
                 option.UseSqlServer(Configuration.GetConnectionString("DefaultSQLConnection"));
             });
-             
+
+            services.AddAutoMapper(typeof(MappingConfig));
+            services.AddScoped<IValliRepository, VillaRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
