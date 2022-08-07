@@ -24,10 +24,10 @@ namespace MagicVilla_VillaAPI.Controllers
 
         //private readonly ApplicationDbContext _db;
         private readonly IMapper _mapper;
-        private readonly IValliRepository _valliRepository;
+        private readonly IVillaRepository _valliRepository;
         protected APIResponse _response;
 
-        public VillaAPIController(IValliRepository dbVilla, IMapper mapper)
+        public VillaAPIController(IVillaRepository dbVilla, IMapper mapper)
         {
             _valliRepository = dbVilla;
             _mapper = mapper;
@@ -103,7 +103,7 @@ namespace MagicVilla_VillaAPI.Controllers
             {
                 if (await _valliRepository.GetAsync(u => u.Name.ToLower() == createDTO.Name.ToLower()) != null)
                 {
-                    ModelState.AddModelError("CustomError", "Villa already Exists!");
+                    ModelState.AddModelError("ErrorMessages", "Villa already Exists!");
                     return BadRequest(ModelState);
                 }
 

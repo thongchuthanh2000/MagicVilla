@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MagicVilla_VillaAPI.Repository.IRepository
 {
-    public interface IValliRepository : IRepository<Villa>
+    public interface IVillaNumberRepository : IRepository<VillaNumber>
     {
-        Task<Villa> UpdateAsync(Villa model);
+        Task<VillaNumber> UpdateAsync(VillaNumber villaNumber);
     }
 }

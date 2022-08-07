@@ -54,7 +54,9 @@ namespace MagicVilla_VillaAPI
             });
 
             services.AddAutoMapper(typeof(MappingConfig));
-            services.AddScoped<IValliRepository, VillaRepository>();
+            services.AddScoped<IVillaRepository, VillaRepository>();
+            services.AddScoped<IVillaNumberRepository, VillaNumberRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

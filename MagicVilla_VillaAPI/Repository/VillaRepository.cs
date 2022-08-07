@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MagicVilla_VillaAPI.Repository
 {
-    public class VillaRepository :Repository<Villa>,  IValliRepository
+    public class VillaRepository : Repository<Villa>,  IVillaRepository
     {
         private readonly ApplicationDbContext _db;
         public VillaRepository(ApplicationDbContext db): base(db)
