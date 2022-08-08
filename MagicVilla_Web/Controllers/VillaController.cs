@@ -36,7 +36,7 @@ namespace MagicVilla_Web.Controllers
 
         public async Task<IActionResult> CreateVilla()
         {
-            return  View();
+            return View();
         }
 
         [HttpPost]
@@ -48,11 +48,12 @@ namespace MagicVilla_Web.Controllers
                 var response = await _villaService.CreateAsync<APIResponse>(villaCreateDTO);
                 if (response != null && response.IsSuccess)
                 {
+                    TempData["success"] = "Villa created successfully";
                     return RedirectToAction(nameof(IndexVilla));
                 }
             }
 
-
+            TempData["error"] = "Error encountered.";
             return View(villaCreateDTO);
         }
 
@@ -76,10 +77,11 @@ namespace MagicVilla_Web.Controllers
                 var response = await _villaService.UpdateAsync<APIResponse>(villaUpdateDTO);
                 if (response != null && response.IsSuccess)
                 {
+                    TempData["success"] = "Villa updated successfully";
                     return RedirectToAction(nameof(IndexVilla));
                 }
             }
-
+            TempData["error"] = "Error encountered.";
             return View(villaUpdateDTO);
         }
 
@@ -98,12 +100,13 @@ namespace MagicVilla_Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteVilla(VillaDTO villaDTO)
         {
-                var response = await _villaService.DeleteAsync<APIResponse>(villaDTO.Id);
-                if (response != null && response.IsSuccess)
-                {
-                    return RedirectToAction(nameof(IndexVilla));
+            var response = await _villaService.DeleteAsync<APIResponse>(villaDTO.Id);
+            if (response != null && response.IsSuccess)
+            {
+                TempData["success"] = "Villa deleted successfully";
+                return RedirectToAction(nameof(IndexVilla));
             }
-
+            TempData["error"] = "Error encountered.";
             return View(villaDTO);
         }
     }
